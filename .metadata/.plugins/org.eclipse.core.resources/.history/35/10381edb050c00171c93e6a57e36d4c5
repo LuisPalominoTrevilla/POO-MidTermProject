@@ -1,0 +1,7 @@
+
+public class Persona {
+	String nombre;
+	String rfc;
+	Deducciones deducciones_totales;
+	Ingresos ingresos;
+}
