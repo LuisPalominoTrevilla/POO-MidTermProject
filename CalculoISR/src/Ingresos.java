@@ -1,13 +1,24 @@
 public class Ingresos {
-	//private Empleado empleado;
 	private double sueldoMensual;
 	private double aguinaldo;
-	private double aguinaldoExcento;
-	private double aguinaldoGravado;
 	private double primaVacacional;
-	private double primaVacacionalExenta;
-	private double primaVacacionalGravada;
+
+	// Constructor
 	
+	/*
+	 * Metodos:
+	 * 
+	 * double get sueldoAnual
+	 * 
+	 * double get aguinaldogravado
+	 * double get aguinaldoexento
+	 * 
+	 * double get privmaVacaccionalgravada
+	 * double get primaVacacionalexenta
+	 * 
+	 * double get totalIngresos
+	 * double get totalIngresosGravados
+	 */
 	
 }
 

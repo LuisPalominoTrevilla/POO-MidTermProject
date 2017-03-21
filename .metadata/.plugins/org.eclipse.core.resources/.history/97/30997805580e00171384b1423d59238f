@@ -20,15 +20,11 @@ public class Empleado extends Persona{
 		return this.deducciones;
 	}
 	
-	public String getRFC(){
-		return this.rfc;
+	public void hacerDeclaracionAnual(){
+		
 	}
 	
 	public ISR getISR(){
 		return this.impuestoISR;
-	}
-	
-	public void hacerDeclaracionAnual(){
-		
 	}
 }

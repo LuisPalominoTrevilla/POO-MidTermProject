@@ -1,0 +1,9 @@
+public class Ingresos {
+	private double sueldoMensual;
+	private double aguinaldo;
+	private double primaVacacional;
+
+	
+	
+}
+

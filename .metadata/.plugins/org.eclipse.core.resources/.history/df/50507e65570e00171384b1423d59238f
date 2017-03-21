@@ -31,15 +31,10 @@ public class Empresa {
 	}
 	
 	public void hacerDeclaracionAnual(){
-		// For para que cada empleado haga sus declaraciones
+		
 	}
 	
 	public Empleado[] getEmpleados(){
 		return this.empleados;
-	}
-	
-	public String toString(){
-		// Regresar en strings en lineas, el nombre del empleado, su rfc y su declaracion (RFC to string)
-		return "";
 	}
 }
