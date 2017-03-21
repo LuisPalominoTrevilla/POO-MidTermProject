@@ -10,7 +10,6 @@ public class Deduccion {
 	private double transporteEscolar;
 	private String nivelEducativo;
 	private double colegiaturaTotal;
-	private double maximoDeducirColegiatura;
 	
 	
 	
