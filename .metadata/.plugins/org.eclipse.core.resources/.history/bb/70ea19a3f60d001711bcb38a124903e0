@@ -1,0 +1,11 @@
+
+public class Empleado extends Persona{
+	private String rfc;
+	private Deduccion deducciones;
+	private Ingresos ingresos;
+	
+	public Empleado(String rfc, Deduccion deducciones, Ingresos ingresos){
+		super(rfc);
+	}
+
+}

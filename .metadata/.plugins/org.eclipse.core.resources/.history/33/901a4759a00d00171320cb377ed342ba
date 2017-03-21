@@ -66,12 +66,8 @@ public class Home extends JFrame{
 		}
 
 		public void actionPerformed(ActionEvent event) {
-			if(this.home.opcion1.isSelected()){
-				// Codigo opcion 1
-			}else{
-				// Codigo opcion 2
-			}
 			this.home.dispose();
+			// Aqui va el codigo para crear una nueva ventana dependiendo de la opcion seleccionada
 		}
 	}
 
