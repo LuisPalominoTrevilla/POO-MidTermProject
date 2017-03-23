@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Ingresos {
 	private double sueldoMensual,
 	 							 aguinaldo,
@@ -12,20 +14,6 @@ public class Ingresos {
 		this.salarioMinimo = 80.04;
 	}
 
-	/*
-	 * Metodos:
-	 *
-	 * double get sueldoAnual
-	 *
-	 * double get aguinaldogravado
-	 * double get aguinaldoexento
-	 *
-	 * double get privmaVacaccionalgravada
-	 * double get primaVacacionalexenta
-	 *
-	 * double get totalIngresos
-	 * double get totalIngresosGravados
-	 */
 
 	 public double getSueldoAnual(){
 		 return this.sueldoMensual * 12;
@@ -33,7 +21,7 @@ public class Ingresos {
 
 	 public double getAguinaldoGravado(){
 		 double aguinaldoReturn = 0;
-
+		 
 		 if(this.aguinaldo > (this.sueldoMensual/30)*15){
 			 aguinaldoReturn = this.aguinaldo - (this.sueldoMensual/30)*15;
 		 }
@@ -47,9 +35,8 @@ public class Ingresos {
 
 	 public double getPrimaVacacionalGravada(){
 		 double primaReturn = 0;
-
 		 if(this.primaVacacional > this.salarioMinimo*15){
-			 primaReturn = this.primaVacacional - this.salarioMinimo*15;
+			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;
 		 }
 
 		 return primaReturn;

@@ -1,0 +1,47 @@
+
+public class Empresa {
+	private int numEmpleados;
+	private int empleadosActivos;
+	private Empleado[] empleados;
+	
+	public Empresa(int numEmpleados){
+		/*
+		 * numEmpleados debe ser mayor o igual a uno
+		 */
+		this.numEmpleados = numEmpleados;
+		this.empleados = new Empleado[this.numEmpleados];
+		this.empleadosActivos = 0;
+	}
+	
+	public Empresa(){
+		this(1);
+	}
+	
+	public void addEmpleado(Empleado empleado){
+		/*
+		 * Regresa -1 si no hay espacio disponible
+		 */
+		try{
+			this.empleados[this.empleadosActivos++] = empleado;
+		}catch(ArrayIndexOutOfBoundsException ex){
+			
+		}
+	}
+	
+	public void addEmpleado(String nombre, String rfc,double sueldoMensual, double aguinaldo, double primaVacacional, double medicosHospitales, double gastosFunerarios, double sgmm, double gastosHipotecarios, double donativos, double retiro, double transporteEscolar, String nivelEducativo, double colegiatura){
+		this.addEmpleado(new Empleado(nombre, rfc, sueldoMensual, aguinaldo, primaVacacional, medicosHospitales, gastosFunerarios, sgmm, gastosHipotecarios, donativos, retiro, transporteEscolar, nivelEducativo, colegiatura));
+	}
+	
+	public void hacerDeclaracionAnual(){
+		// For para que cada empleado haga sus declaraciones
+	}
+	
+	public Empleado[] getEmpleados(){
+		return this.empleados;
+	}
+	
+	public String toString(){
+		// Regresar en strings en lineas, el nombre del empleado, su rfc y su declaracion (RFC to string)
+		return "";
+	}
+}

@@ -28,7 +28,10 @@ public class Deduccion {
 		this.nivelEducativo = nivelEducativo;
 		this.colegiatura = colegiatura;
 	}
-
+	
+	public Deduccion(Empleado empleado){
+		this.empleado = empleado;
+	}
 
 	public double getMaximoDeducirColegiatura(){
 		/*
@@ -44,6 +47,23 @@ public class Deduccion {
 		default:
 			return 0.0;
 		}
+	}
+	
+	public double getTotalDeducciones(){
+		/*
+		 * Regresa el total de deducciones SIN incluir el retiro
+		 */
+		return this.medicosHospitales + this.gastosFunerarios + this.sgmm + this.gastosHipotecarios + this.donativos + this.transporteEscolar + this.getMaximoDeducirColegiatura();
+	}
+	
+	public double getDeduccionPermitida(){
+		double deduccionRetiro = 0;
+		double deduccionNormal = 0;
+		final double MAXIMO_DEDUCIR = this.empleado.getIngresos().getTotalIngresos()*.10;
+		
+		deduccionRetiro = (this.retiro > MAXIMO_DEDUCIR)? MAXIMO_DEDUCIR:this.retiro;
+		deduccionNormal = (this.getTotalDeducciones() > MAXIMO_DEDUCIR)? MAXIMO_DEDUCIR: this.getTotalDeducciones();
+		return deduccionRetiro + deduccionNormal;
 	}
 	
 	

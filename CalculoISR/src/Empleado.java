@@ -5,11 +5,11 @@ public class Empleado extends Persona{
 	private Ingresos ingresos;
 	private ISR impuestoISR;
 	
-	public Empleado(String nombre, String rfc, Deduccion deducciones, Ingresos ingresos){
+	public Empleado(String nombre, String rfc,double sueldoMensual, double aguinaldo, double primaVacacional, double medicosHospitales, double gastosFunerarios, double sgmm, double gastosHipotecarios, double donativos, double retiro, double transporteEscolar, String nivelEducativo, double colegiatura){
 		super(nombre);
 		this.rfc = rfc;
-		this.deducciones = deducciones;
-		this.ingresos = ingresos;
+		this.deducciones = new Deduccion(this, medicosHospitales, gastosFunerarios, sgmm, gastosHipotecarios, donativos, retiro, transporteEscolar, nivelEducativo, colegiatura);
+		this.ingresos = new Ingresos(sueldoMensual, aguinaldo, primaVacacional);
 	}
 	
 	public Ingresos getIngresos(){

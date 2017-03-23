@@ -1,32 +1,39 @@
 
 public class Empresa {
-	private int numEmpleados;
-	private int empleadosActivos;
-	private Empleado[] empleados;
+	private int vacantes;			// Vacantes disponibles, no necesariamente van a estar ocupadas
+	private int empleadosActivos;	// Numero de empleados registrados en la empresa
+	private Empleado[] empleados;	// Lista de empleados
 	
-	public Empresa(int numEmpleados){
+	public Empresa(int vacantes){
 		/*
 		 * numEmpleados debe ser mayor o igual a uno
 		 */
-		this.numEmpleados = numEmpleados;
-		this.empleados = new Empleado[this.numEmpleados];
+		this.vacantes = vacantes;
+		this.empleados = new Empleado[this.vacantes];	// Inicializar el tamano de la lista de empleados
 		this.empleadosActivos = 0;
 	}
 	
 	public Empresa(){
-		this(1);
+		this(10);	// Crea una lista para 10 empleados
 	}
 	
-	public int addEmpleado(String nombre, String rfc, Deduccion deducciones, Ingresos ingresos){
-		/*
-		 * Regresa -1 si no hay espacio disponible
-		 */
+	public void addEmpleado(Empleado empleado){
 		try{
-			this.empleados[this.empleadosActivos++] = new Empleado(nombre, rfc, deducciones, ingresos);
+			this.empleados[this.empleadosActivos] = empleado;			// Anadir el empleado a la lista
+			this.empleadosActivos++;									// Anadir un empleado nuevo
 		}catch(ArrayIndexOutOfBoundsException ex){
-			return -1;
+			this.vacantes += 10;										// Agregar 10 vacantes extra
+			Empleado[] temp = new Empleado[this.vacantes];				
+			
+			for(int i = 0; i < this.empleadosActivos; i++){
+				temp[i] = this.empleados[i];
+			}
+			this.empleados = temp;
 		}
-		return 0;
+	}
+	
+	public void addEmpleado(String nombre, String rfc,double sueldoMensual, double aguinaldo, double primaVacacional, double medicosHospitales, double gastosFunerarios, double sgmm, double gastosHipotecarios, double donativos, double retiro, double transporteEscolar, String nivelEducativo, double colegiatura){
+		this.addEmpleado(new Empleado(nombre, rfc, sueldoMensual, aguinaldo, primaVacacional, medicosHospitales, gastosFunerarios, sgmm, gastosHipotecarios, donativos, retiro, transporteEscolar, nivelEducativo, colegiatura));
 	}
 	
 	public void hacerDeclaracionAnual(){
