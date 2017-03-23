@@ -1,1 +1,8 @@
 /bin/
+
+# Untracked files:
+src/Pruebas.java
+src.Pruebas.class
+
+# Compiled class file
+*.class

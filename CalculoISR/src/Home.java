@@ -17,23 +17,23 @@ public class Home extends JFrame{
 	private JPanel panel;
 	private JRadioButton opcion1, opcion2;
 	private JButton continuar;
-	
+
 	public Home(){
 		super("Bienvenido");
-		
+
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
-		
+
 		this.panel = new JPanel();
 		this.panel.setPreferredSize(new Dimension(400, 200));
 		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
 		this.add(this.panel);
 		this.pack();
-		
-        // Las siguientes 2 líneas de código fueron tomadas de http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
+
+        // Las siguientes 2 lineas de cdigo fueron tomadas de http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
+
         // Inicializar Componentes
         this.opcion1 = new JRadioButton("Input manual", true);
         this.opcion1.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -46,19 +46,19 @@ public class Home extends JFrame{
         this.continuar = new JButton("Continuar");
         this.continuar.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.continuar.addActionListener(new Action(this));
-        JLabel title = new JLabel("Seleccione la opción deseada para el cálculo del ISR");
+        JLabel title = new JLabel("Seleccione la opciï¿½n deseada para el cï¿½lculo del ISR");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setBorder(BorderFactory.createEmptyBorder(10, 5, 20, 5));	// Añadir borde al componente de titulo
-        
-        // Añadir componentes al panel
+        title.setBorder(BorderFactory.createEmptyBorder(10, 5, 20, 5));	// Anadir borde al componente de titulo
+
+        // Anadir componentes al panel
         this.panel.add(title);
         this.panel.add(this.opcion1);
         this.panel.add(this.opcion2);
         this.panel.add(this.continuar);
-        
+
         this.setVisible(true);
 	}
-	
+
 	static class Action implements ActionListener{
 		Home home;
 		public Action(Home h){
