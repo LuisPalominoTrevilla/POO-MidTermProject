@@ -46,5 +46,13 @@ public class Deduccion {
 		}
 	}
 	
+	/*
+	 * Metodos:
+	 * 
+	 * double getMaximoDeducirColegiatura
+	 * 
+	 */
+	
+	
 	
 }

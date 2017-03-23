@@ -22,7 +22,8 @@ public class Empresa {
 		 * Regresa -1 si no hay espacio disponible
 		 */
 		try{
-			this.empleados[this.empleadosActivos++] = new Empleado(nombre, rfc, deducciones, ingresos);
+			this.empleados[this.empleadosActivos] = new Empleado(nombre, rfc, deducciones, ingresos);
+			this.empleadosActivos++;
 		}catch(ArrayIndexOutOfBoundsException ex){
 			return -1;
 		}

@@ -14,7 +14,7 @@ public class Empresa {
 	}
 	
 	public Empresa(){
-		this(1);
+		this(10);
 	}
 	
 	public int addEmpleado(String nombre, String rfc, Deduccion deducciones, Ingresos ingresos){

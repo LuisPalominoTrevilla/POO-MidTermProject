@@ -28,8 +28,7 @@ public class Deduccion {
 		this.nivelEducativo = nivelEducativo;
 		this.colegiatura = colegiatura;
 	}
-
-
+	
 	public double getMaximoDeducirColegiatura(){
 		/*
 		 *  Regresa el maximo a deducir de colegiatura considerando la colegiatura y el nivel educativo
@@ -45,6 +44,14 @@ public class Deduccion {
 			return 0.0;
 		}
 	}
+	
+	/*
+	 * Metodos:
+	 * 
+	 * double getMaximoDeducirColegiatura
+	 * 
+	 */
+	
 	
 	
 }

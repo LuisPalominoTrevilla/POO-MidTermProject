@@ -14,7 +14,6 @@ INDEX VERSION 1.129+C:\Users\Luis Palomino\Desktop\TEC\Segundo Semestre\Programa
 843494433.index
 1199826107.index
 3314433690.index
-360471980.index
 1841280308.index
 2221491804.index
 1525087677.index
