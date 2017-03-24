@@ -11,7 +11,7 @@ public class Ingresos {
 		this.sueldoMensual = sueldoMensual;
 		this.aguinaldo = aguinaldo;
 		this.primaVacacional = primaVacacional;
-		this.salarioMinimo = 80.04;
+		this.salarioMinimo = 80.04;	// Salario minimo debe ajustarse al respectivo anio
 	}
 
 
@@ -23,7 +23,7 @@ public class Ingresos {
 		 double aguinaldoReturn = 0;
 		 
 		 if(this.aguinaldo > (this.sueldoMensual/30)*15){
-			 aguinaldoReturn = this.aguinaldo - (this.sueldoMensual/30)*15;
+			 aguinaldoReturn = this.aguinaldo - (this.sueldoMensual/30)*15;	// Checa si aguinaldo excede limite de deduccion
 		 }
 
 		 return aguinaldoReturn;
@@ -35,7 +35,7 @@ public class Ingresos {
 
 	 public double getPrimaVacacionalGravada(){
 		 double primaReturn = 0;
-		 if(this.primaVacacional > this.salarioMinimo*15){
+		 if(this.primaVacacional > this.salarioMinimo*15){	// Checa si prima vacacional excede limite de deduccion
 			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;		// Redondear para evitar impresicion
 		 }
 
