@@ -37,7 +37,11 @@ public class Empresa {
 	}
 	
 	public void hacerDeclaracionAnual(){
-		// For para que cada empleado haga sus declaraciones
+		for(int i=0; i<this.vacantes;i++){
+			if(empleados[i]!=null){
+				this.empleados[i].hacerDeclaracionAnual();
+			}
+		}
 	}
 	
 	public Empleado[] getEmpleados(){
@@ -49,7 +53,15 @@ public class Empresa {
 	}
 	
 	public String toString(){
-		// Regresar en strings en lineas, el nombre del empleado, su rfc y su declaracion (RFC to string)
-		return "";
+		// Regresar un string en lineas, el nombre del empleado, su rfc y su declaracion
+		String returnString = "";
+		
+		for(int i=0; i<this.vacantes;i++){
+			if(empleados[i]!=null){
+				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "/n";
+			}
+		}
+		
+		return returnString;
 	}
 }

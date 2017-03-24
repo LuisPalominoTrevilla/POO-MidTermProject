@@ -3,6 +3,8 @@ public class Deduccion {
 	private final int MAXIMO_PRIMARIA = 12900;
 	private final int MAXIMO_SECUNDARIA = 19900;
 	private final int MAXIMO_PREPARATORIA = 24500;
+	private final int MAXIMO_PREESCOLAR = 14200;
+	private final int MAXIMO_TECNICO = 17100;
 	
 	private Empleado empleado;
 	private double medicosHospitales;
@@ -38,12 +40,16 @@ public class Deduccion {
 		 *  Regresa el maximo a deducir de colegiatura considerando la colegiatura y el nivel educativo
 		 */
 		switch(this.nivelEducativo.toLowerCase()){
+		case "preescolar":
+			return (this.MAXIMO_PREESCOLAR < this.colegiatura)? this.MAXIMO_PREESCOLAR: this.colegiatura;
 		case "primaria":
 			return (this.MAXIMO_PRIMARIA < this.colegiatura)? this.MAXIMO_PRIMARIA: this.colegiatura;
 		case "secundaria":
 			return (this.MAXIMO_SECUNDARIA < this.colegiatura)? this.MAXIMO_SECUNDARIA: this.colegiatura;
-		case "preparatoria":
+		case "bachillerato":
 			return (this.MAXIMO_PREPARATORIA < this.colegiatura)? this.MAXIMO_PREPARATORIA: this.colegiatura;
+		case "Tecnico":
+			return (this.MAXIMO_TECNICO < this.colegiatura)? this.MAXIMO_TECNICO: this.colegiatura;
 		default:
 			return 0.0;
 		}
