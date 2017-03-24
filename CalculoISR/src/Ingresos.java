@@ -36,7 +36,7 @@ public class Ingresos {
 	 public double getPrimaVacacionalGravada(){
 		 double primaReturn = 0;
 		 if(this.primaVacacional > this.salarioMinimo*15){
-			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;
+			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;		// Redondear para evitar impresicion
 		 }
 
 		 return primaReturn;

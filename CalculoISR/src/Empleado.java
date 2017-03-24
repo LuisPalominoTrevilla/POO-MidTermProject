@@ -29,6 +29,6 @@ public class Empleado extends Persona{
 	}
 	
 	public void hacerDeclaracionAnual(){
-		
+		this.impuestoISR = new ISR(this.getDeduccion().getDeduccionPermitida(), this.ingresos.getIngresosGravados());
 	}
 }

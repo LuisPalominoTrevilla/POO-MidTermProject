@@ -1,0 +1,25 @@
+
+public class ISR {
+	
+	private double deduccion;
+	private double ingresos;
+	private final double[] limiteInferior = {};
+	private final double[] limiteSuperior = {};
+	private final double[] cuotaFija = {};
+	private final double[] porcentajeExcedente = {};
+	
+	public ISR(double deduccion, double ingresos){
+		/*
+		 * deduccion: deduccion permitida 10%
+		 * ingresos: ingresos totales gravados
+		 */
+		this.deduccion = deduccion;
+		this.ingresos = ingresos;
+	}
+	
+	public double getMontoISR(){
+		return this.ingresos - this.deduccion;
+	}
+	
+	
+}

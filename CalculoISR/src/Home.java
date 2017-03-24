@@ -67,9 +67,9 @@ public class Home extends JFrame{
 
 		public void actionPerformed(ActionEvent event) {
 			if(this.home.opcion1.isSelected()){
-				// Codigo opcion 1
+				// Codigo opcion 1 (crear ventana)
 			}else{
-				// Codigo opcion 2
+				// Codigo opcion 2 (crear ventana)
 			}
 			this.home.dispose();
 		}
@@ -77,7 +77,6 @@ public class Home extends JFrame{
 
 	public static void main(String[] args){
 		Home homw = new Home();
-		System.out.println("hey");
 	}
 
 }

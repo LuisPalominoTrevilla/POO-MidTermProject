@@ -44,6 +44,10 @@ public class Empresa {
 		return this.empleados;
 	}
 	
+	public int getEmpleadosActivos(){
+		return this.empleadosActivos;
+	}
+	
 	public String toString(){
 		// Regresar en strings en lineas, el nombre del empleado, su rfc y su declaracion (RFC to string)
 		return "";
