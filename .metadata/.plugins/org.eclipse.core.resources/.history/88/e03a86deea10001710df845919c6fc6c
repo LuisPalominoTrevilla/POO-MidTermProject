@@ -56,7 +56,7 @@ public class Empresa {
 		
 		for(int i=0; i<this.empleadosActivos;i++){
 			if(empleados[i]!=null){
-				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "\n";
+				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "/n";
 			}
 		}
 		

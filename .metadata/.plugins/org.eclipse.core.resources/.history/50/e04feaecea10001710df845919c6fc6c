@@ -58,7 +58,7 @@ public class ISR {
 	}
 	
 	public String toString(){
-		return String.format("%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", this.deduccion, this.getMontoISR(), this.getCuotaFija(), this.getPorcentajeExcedente()*100, this.getPagoExcedente(), this.getPagoTotal());
+		return String.format("%.2f, %.2f, %.2f, %.2f, %.2f, %.2f", this.deduccion, this.getMontoISR(), this.getCuotaFija(), this.getPorcentajeExcedente()*100, this.getPagoExcedente(), this.getPagoTotal());
 	}
 	
 }

@@ -37,8 +37,10 @@ public class Empresa {
 	}
 	
 	public void hacerDeclaracionAnual(){
-		for(int i=0; i<this.empleadosActivos;i++){
-			this.empleados[i].hacerDeclaracionAnual();
+		for(int i=0; i<this.vacantes;i++){
+			if(empleados[i]!=null){
+				this.empleados[i].hacerDeclaracionAnual();
+			}
 		}
 	}
 	
@@ -56,7 +58,7 @@ public class Empresa {
 		
 		for(int i=0; i<this.empleadosActivos;i++){
 			if(empleados[i]!=null){
-				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "\n";
+				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "/n";
 			}
 		}
 		
