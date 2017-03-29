@@ -1,0 +1,16 @@
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class VentanaGrupal extends JFrame{
+	private JButton retroceder;
+	private JPanel panel;
+	
+	public VentanaGrupal(){
+		super("Varios Trabajadores");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.panel = new JPanel()
+		
+		this.setVisible(true);
+	}
+}

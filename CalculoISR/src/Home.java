@@ -3,6 +3,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -17,6 +19,7 @@ public class Home extends JFrame{
 	private JPanel panel;
 	private JRadioButton opcion1, opcion2;
 	private JButton continuar;
+	private JFrame ventanaGrupal;
 
 	public Home(){
 		super("Bienvenido");
@@ -45,8 +48,24 @@ public class Home extends JFrame{
         grupo1.add(this.opcion2);
         this.continuar = new JButton("Continuar");
         this.continuar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.continuar.addActionListener(new Action(this));
-        JLabel title = new JLabel("Seleccione la opci�n deseada para el c�lculo del ISR");
+        this.continuar.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				if(Home.this.opcion1.isSelected()){
+					// Codigo opcion 1 (crear ventana)
+				}else{
+					if (Home.this.ventanaGrupal != null){
+						Home.this.ventanaGrupal.setVisible(true);
+					}else{
+						Home.this.ventanaGrupal = new VentanaGrupal(Home.this);
+					}
+				}
+				Home.this.setVisible(false);	
+			}
+        	
+        });
+        
+        JLabel title = new JLabel("Seleccione la opcion deseada para el caculo del ISR");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setBorder(BorderFactory.createEmptyBorder(10, 5, 20, 5));	// Anadir borde al componente de titulo
 
@@ -56,27 +75,12 @@ public class Home extends JFrame{
         this.panel.add(this.opcion2);
         this.panel.add(this.continuar);
 
+        
         this.setVisible(true);
 	}
 
-	static class Action implements ActionListener{
-		Home home;
-		public Action(Home h){
-			this.home = h;
-		}
-
-		public void actionPerformed(ActionEvent event) {
-			if(this.home.opcion1.isSelected()){
-				// Codigo opcion 1 (crear ventana)
-			}else{
-				// Codigo opcion 2 (crear ventana)
-			}
-			this.home.dispose();
-		}
-	}
-
 	public static void main(String[] args){
-		Home homw = new Home();
+		new Home();
 	}
 
 }

@@ -1,0 +1,11 @@
+import javax.swing.JFrame;
+
+public class VentanaGrupal extends JFrame{
+	public VentanaGrupal(){
+		super();
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
+		
+		this.setVisible(true);
+	}
+}
