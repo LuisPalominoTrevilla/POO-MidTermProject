@@ -1,0 +1,60 @@
+
+public class Pila <T>{
+	
+	private T[] u;
+	private int i;
+	
+	public Pila(){
+		this.u = (T[]) new Object[10];
+		this.i = 0;
+	}
+	
+	public void push(T dato){
+		if(i<10) {
+			this.u[i] = dato;
+			this.i++;
+		}
+	}
+	
+	public T pop(){
+		T temp = this.u[i-1];
+		this.u[i-1] = null;
+		this.i--;
+		return temp;
+	}
+	
+	public T top(){
+		return this.u[i-1];
+	}
+	
+	public int size(){
+		return i;
+	}
+	
+	public String toString(){
+		String temp="";
+		for(int j=0;j<10;j++){
+			if(this.u[j]!=null){
+				temp+=this.u[j] + ",";
+			}
+		}
+		return temp;
+	}
+	
+	public static void main(String[] Args){
+		Pila stack = new Pila();
+		stack.push(10);
+		stack.push(20);
+		stack.push(30);
+		
+		System.out.println(stack.top());
+		
+		stack.pop();
+		
+		System.out.println(stack.top());
+		System.out.println(stack.toString());
+		System.out.println(stack.size());
+	}
+	
+
+}

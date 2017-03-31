@@ -1,5 +1,0 @@
-
-public class Persona {
-	Deducciones deducciones_totales;
-	Ingresos ingresos;
-}

@@ -1,0 +1,25 @@
+
+public class Pila <T>{
+	
+	private T[] u;
+	private int i;
+	
+	public Pila(){
+		this.u = (T[]) new Object[10];
+		this.i = 0;
+	}
+	
+	public void push(T dato){
+		if(i<10) {
+			this.u[i] = dato;
+			this.i++;
+		}
+	}
+	
+	public <T> pop(){
+		return this.u[i-1];
+	}
+	
+	
+
+}

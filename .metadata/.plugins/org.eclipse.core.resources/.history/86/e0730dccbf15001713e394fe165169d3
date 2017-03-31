@@ -1,0 +1,78 @@
+
+public class ISR {
+	
+	private double deduccion;
+	private double ingresos;
+	private final double[] LIMITE_INFERIOR = {.01, 5952.85, 50524.93, 88793.05, 103218.01, 123580.21, 249243.49, 392841.97, 750000.01, 1000000.01, 3000000.01};
+	private final double[] LIMITE_SUPERIOR = {5952.84, 50524.92, 88793.04, 103218.0, 249243.48, 392841.96, 750000, 1000000, 3000000};
+	private final double[] CUOTA_FIJA = {0, 114.29, 2966.91, 7130.48, 9438.47, 13087.37, 39929.05, 73703.41, 180850.82, 260850.81, 940850.81};
+	private final double[] PORCENTAJE_EXCEDENTE = {.0192, .064, .1088, .16, .1792, .2136, .2352, .30, .32, .34, .35};
+	private final double[][] table = {LIMITE_INFERIOR, LIMITE_SUPERIOR, CUOTA_FIJA, PORCENTAJE_EXCEDENTE};
+	
+	public ISR(double deduccion, double ingresos){
+		/*
+		 * deduccion: deduccion permitida 10%
+		 * ingresos: ingresos totales gravados
+		 */
+		this.deduccion = deduccion;
+		this.ingresos = ingresos;
+	}
+	
+	public double getDeduccionPermitida(){
+		return this.deduccion;
+	}
+	
+	public double getMontoISR(){
+		return this.ingresos - this.deduccion;
+	}
+	
+	public double getCuotaFija(){
+		return this.vLookUp(this.getMontoISR(), 2);
+	}
+	
+	public double getPorcentajeExcedente(){
+		return this.vLookUp(this.getMontoISR(), 3);
+	}
+	
+	public double getPagoExcedente(){
+		double monto = this.getMontoISR();
+		double limInferior = this.vLookUp(monto, 0);
+		return Math.round((monto-limInferior)*this.getPorcentajeExcedente() * 100.0)/100.0;		// Redondear para evitar impresicion
+	}
+	
+	public double getPagoTotal(){
+		return this.getPagoExcedente() + this.getCuotaFija();
+	}
+	
+	private double vLookUp(double searchValue, int columnResult){
+		/*
+		 * La variable searchValue debe ser mayor o igual a .01
+		 * columnResult puede tomar los siguientes valores: 0, 2, 3
+		 */
+		for(int i = 0; i < this.LIMITE_INFERIOR.length-1; i++){
+			if(searchValue >= this.LIMITE_INFERIOR[i] && searchValue <= this.LIMITE_SUPERIOR[i]){
+				return this.table[columnResult][i];
+			}
+		}
+		return this.table[columnResult][this.table[columnResult].length-1];	
+	}
+	
+	public String toString(){
+		return String.format("%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", this.deduccion, this.getMontoISR(), this.getCuotaFija(), this.getPorcentajeExcedente()*100, this.getPagoExcedente(), this.getPagoTotal());
+	}
+	
+	public String isrToString(){
+		 return "<html><b>TOTAL</b> <br><br>" +
+		 		"<b>Deduccion Permitida:</b>             $" + Double.toString(this.getDeduccionPermitida()) + "<br>" +
+				"<b>Monto Total Gravado:</b>       		 $" + Double.toString(this.getMontoISR()) + "<br>" +
+		 		"<b>Cuota Fija:</b>       					$" + Double.toString(this.getCuotaFija()) + "<br>" +
+		 		"<b>Hipotecarios:</b>         			 $" + Double.toString(this.gastosHipotecarios) + "<br>" +
+		 		"<b>Donativos:</b>         				 $" + Double.toString(this.donativos) + "<br>" +
+		 		"<b>Subcuenta Retiro:</b>          		 $" + Double.toString(this.retiro) + "<br>" +
+		 		"<b>Transporte Escolar:</b>  			 $" + Double.toString(this.transporteEscolar) + "<br>" +
+		 		"<b>Colegiatura:</b>  					 $" + Double.toString(this.getMaximoDeducirColegiatura()) + "<br>" +
+		 		"<b>Total Deducciones:</b>            	 $" + Double.toString(this.getTotalDeducciones()) + "<br>" +
+		 		"<b>Total Deducciones Permitidas:</b>    $" + Double.toString(this.getDeduccionPermitida()) + "</html>";
+	 }
+	
+}

@@ -52,7 +52,7 @@ public class Home extends JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 				if(Home.this.opcion1.isSelected()){
-					// Codigo opcion 1 (crear ventana)
+					new VentanaPersona();
 				}else{
 					if (Home.this.ventanaGrupal != null){
 						Home.this.ventanaGrupal.setVisible(true);

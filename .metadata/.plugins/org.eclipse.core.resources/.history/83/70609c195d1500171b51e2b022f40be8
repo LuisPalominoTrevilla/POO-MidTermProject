@@ -1,0 +1,37 @@
+
+public class Empleado extends Persona{
+	private String rfc;
+	private Deduccion deducciones;
+	private double ingresos;
+	private ISR impuestoISR;
+	
+	public Empleado(String nombre, String rfc,double sueldoMensual, double aguinaldo, double primaVacacional, double medicosHospitales, double gastosFunerarios, double sgmm, double gastosHipotecarios, double donativos, double retiro, double transporteEscolar, String nivelEducativo, double colegiatura){
+		super(nombre);
+		this.rfc = rfc;
+		this.deducciones = new Deduccion(this, medicosHospitales, gastosFunerarios, sgmm, gastosHipotecarios, donativos, retiro, transporteEscolar, nivelEducativo, colegiatura);
+		this.ingresos = new Ingresos(sueldoMensual, aguinaldo, primaVacacional);
+	}
+	
+//	public Ingresos getIngresos(){
+//		return this.ingresos;
+//	}
+	public double getIngresos(){
+		return Double.parseDouble(this.ingresos);
+	}
+	
+	public Deduccion getDeduccion(){
+		return this.deducciones;
+	}
+	
+	public String getRFC(){
+		return this.rfc;
+	}
+	
+	public ISR getISR(){
+		return this.impuestoISR;
+	}
+	
+	public void hacerDeclaracionAnual(){
+		this.impuestoISR = new ISR(this.getDeduccion().getDeduccionPermitida(), this.ingresos.getIngresosGravados());
+	}
+}

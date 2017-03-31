@@ -53,5 +53,19 @@ public class Ingresos {
 	 public double getIngresosGravados(){
 		 return this.getSueldoAnual() + getAguinaldoGravado() + getPrimaVacacionalGravada();
 	 }
+	 
+	 public String ingresosToString(){
+		 return "<html><b>INGRESOS</b> <br><br>" +
+		 		"<b>Sueldo Mensual:</b>            $" + Double.toString(this.sueldoMensual) + "<br>" +
+				"<b>Total Sueldo Anual:</b>        $" + Double.toString(this.getSueldoAnual()) + "<br>" +
+		 		"<b>Aguinaldo:</b>                 $" + Double.toString(this.aguinaldo) + "<br>" +
+		 		"<b>Aguinaldo Excento:</b>         $" + Double.toString(this.getAguinaldoExcento()) + "<br>" +
+		 		"<b>Aguinaldo Gravado:</b>         $" + Double.toString(this.getAguinaldoGravado()) + "<br>" +
+		 		"<b>Prima Vacacional:</b>          $" + Double.toString(this.primaVacacional) + "<br>" +
+		 		"<b>Prima Vacacional Excenta:</b>  $" + Double.toString(this.getPrimaVacacionalExcenta()) + "<br>" +
+		 		"<b>Prima Vacacional Gravada:</b>  $" + Double.toString(this.getPrimaVacacionalGravada()) + "<br>" +
+		 		"<b>Total Ingresos:</b>            $" + Double.toString(this.getTotalIngresos()) + "<br>" +
+		 		"<b>Total Ingresos Gravados:</b>   $" + Double.toString(this.getIngresosGravados()) + "</html>";
+	 }
 
 }

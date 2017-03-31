@@ -1,0 +1,10 @@
+
+public class <T> void Pila {
+	
+	private T[] u = (T[]) new Object[x];
+	
+	public Pila(){
+		
+	}
+
+}
