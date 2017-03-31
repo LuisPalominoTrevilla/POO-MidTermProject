@@ -31,4 +31,12 @@ public class Empleado extends Persona{
 	public void hacerDeclaracionAnual(){
 		this.impuestoISR = new ISR(this.getDeduccion().getDeduccionPermitida(), this.ingresos.getIngresosGravados());
 	}
+	
+	public String toString(){
+		if(this.impuestoISR != null){
+			return String.format("%s,%s,%s", this.getNombre(), this.rfc, this.impuestoISR);
+		}else{
+			return String.format("%s,%s", this.getNombre(), this.rfc);
+		}
+	}
 }

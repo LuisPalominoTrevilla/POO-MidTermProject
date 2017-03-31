@@ -6,7 +6,7 @@ public class Empresa {
 	
 	public Empresa(int vacantes){
 		/*
-		 * numEmpleados debe ser mayor o igual a uno
+		 * vacantes debe ser mayor o igual a uno
 		 */
 		this.vacantes = vacantes;
 		this.empleados = new Empleado[this.vacantes];	// Inicializar el tamano de la lista de empleados
@@ -54,10 +54,11 @@ public class Empresa {
 		// Regresar un string en lineas, el nombre del empleado, su rfc y su declaracion
 		String returnString = "";
 		
-		for(int i=0; i<this.empleadosActivos;i++){
-			if(empleados[i]!=null){
-				returnString += this.empleados[i].getNombre() + "," + this.empleados[i].getRFC() + "," + this.empleados[i].getISR() + "\n";
+		for(Empleado empleado: this.empleados){
+			if(empleado == null){
+				break;								// Salirse del loop si ya no hay mas vacantes
 			}
+			returnString += empleado + "\n";		// Concatenar los empleados
 		}
 		
 		return returnString;
