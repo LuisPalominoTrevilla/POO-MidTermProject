@@ -1,3 +1,4 @@
+import java.lang.Math;
 
 public class ISR {
 	
@@ -41,7 +42,8 @@ public class ISR {
 	}
 	
 	public double getPagoTotal(){
-		return this.getPagoExcedente() + this.getCuotaFija();
+		//return this.getPagoExcedente() + this.getCuotaFija();
+		return Math.round(this.getPagoExcedente() + this.getCuotaFija()*100.00)/100.00;
 	}
 	
 	private double vLookUp(double searchValue, int columnResult){
@@ -62,13 +64,13 @@ public class ISR {
 	}
 	
 	public String isrToString(){
-		 return "<html><b>TOTAL</b> <br><br>" +
-		 		"<b>Deduccion Permitida:</b>             $" + Double.toString(this.getDeduccionPermitida()) + "<br>" +
-				"<b>Monto Total Gravado:</b>       		 $" + Double.toString(this.getMontoISR()) + "<br>" +
-		 		"<b>Cuota Fija:</b>       				 $" + Double.toString(this.getCuotaFija()) + "<br>" +
-		 		"<b>% Excedente:</b>         			 $" + Double.toString(this.getPorcentajeExcedente()) + "<br>" +
-		 		"<b>Pago por Excedente:</b>         	 $" + Double.toString(this.getPagoExcedente()) + "<br>" +
-		 		"<b>TOTAL A PAGAR:</b>          		 $" + Double.toString(this.getPagoTotal()) + "</html>";
+		 return "<html>-----------------------<br><b>TOTAL</b><br>-----------------------<br>" +
+		 		"<b>Deduccion Permitida:</b>   $" + Double.toString(this.getDeduccionPermitida()) + "<br>" +
+				"<b>Monto Total Gravado:</b>   $" + Double.toString(this.getMontoISR()) + "<br>" +
+		 		"<b>Cuota Fija:</b>       	   $" + Double.toString(this.getCuotaFija()) + "<br>" +
+		 		"<b>% Excedente:</b>         	" + Double.toString(this.getPorcentajeExcedente()*100) + "%<br>" +
+		 		"<b>Pago por Excedente:</b>    $" + Double.toString(this.getPagoExcedente()) + "<br>" +
+		 		"<b>TOTAL A PAGAR:</b>         $" + Double.toString(this.getPagoTotal()) + "</html>";
 	 }
 	
 }
