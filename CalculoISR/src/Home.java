@@ -60,9 +60,8 @@ public class Home extends JFrame{
 						Home.this.ventanaGrupal = new VentanaGrupal(Home.this);
 					}
 				}
-				Home.this.setVisible(false);	
+				Home.this.setVisible(false);
 			}
-        	
         });
         
         JLabel title = new JLabel("Seleccione la opcion deseada para el caculo del ISR");
