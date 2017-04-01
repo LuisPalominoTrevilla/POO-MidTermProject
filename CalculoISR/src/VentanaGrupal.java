@@ -1,5 +1,5 @@
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -12,9 +12,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,11 +26,12 @@ public class VentanaGrupal extends JFrame{
 	private JButton retroceder, openFile, saveFile;
 	private JPanel panelOpciones, panelSalir;
 	private JFrame home;
+	private JLabel empleados;
 	private JFileChooser fc;
 	private Empresa miEmpresa;
 	
 	public VentanaGrupal(Home home){
-		super("Varios Trabajadores");
+		super("Calcular ISR varios trabajadores");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.home = home;
@@ -36,8 +40,10 @@ public class VentanaGrupal extends JFrame{
         
 		this.panelOpciones = new JPanel();
 		this.panelSalir = new JPanel();
-		this.panelOpciones.setPreferredSize(new Dimension(400, 300));
-		this.panelSalir.setPreferredSize(new Dimension(400, 100));
+		this.panelOpciones.setPreferredSize(new Dimension(400, 130));
+		this.panelSalir.setPreferredSize(new Dimension(400, 50));
+		this.empleados = new JLabel("");
+		this.empleados.setBorder(BorderFactory.createEmptyBorder(10, 400, 15, 400));			// Agregar borde para estetica de la ventana
 		this.retroceder = new JButton("Retroceder");
 		this.retroceder.addActionListener(new ActionListener() {
 			
@@ -59,7 +65,7 @@ public class VentanaGrupal extends JFrame{
 					if(seleccion == JFileChooser.APPROVE_OPTION){
 						VentanaGrupal.this.crearEmpresa(VentanaGrupal.this.fc.getSelectedFile());
 						VentanaGrupal.this.saveFile.setEnabled(true);
-						JOptionPane.showMessageDialog(VentanaGrupal.this, "El archivo se ha cargado con éxito.", "", JOptionPane.PLAIN_MESSAGE);
+						VentanaGrupal.this.empleados.setText("Se han agregado " + VentanaGrupal.this.miEmpresa.getEmpleadosActivos() + " empleados");
 					}
 				}catch(IOException ex){
 					JOptionPane.showMessageDialog(VentanaGrupal.this,"Ocurrió un error al leer el archivo.", "Error de lectura",JOptionPane.ERROR_MESSAGE);
@@ -78,16 +84,17 @@ public class VentanaGrupal extends JFrame{
 						JOptionPane.showMessageDialog(VentanaGrupal.this, "El archivo se ha generado y guardado con éxito.", "", JOptionPane.PLAIN_MESSAGE);
 					}
 				}catch(IOException ex){
-					JOptionPane.showMessageDialog(VentanaGrupal.this,"Ocurrió un error al guardar el archivo.", "Error de lectura",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(VentanaGrupal.this,"Ocurrió un error al guardar el archivo.", "Error de escritura",JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
 		
 		// Add components to panel
+		this.panelOpciones.add(this.empleados);
 		this.panelOpciones.add(this.openFile);
-		this.panelSalir.add(this.retroceder);
 		this.panelOpciones.add(this.saveFile);
+		this.panelSalir.add(this.retroceder);
 		
 		
 		// Add panels to frame
@@ -103,6 +110,9 @@ public class VentanaGrupal extends JFrame{
 	}
 	
 	private void crearEmpresa(File file) throws IOException{
+		if(!file.toString().endsWith(".csv")){
+			throw new IOException();					// Asegurarse que el metodo trabaja solo con archivos CSV
+		}
 		BufferedReader in = new BufferedReader(new FileReader(file));
 		String line = in.readLine();
 		this.miEmpresa = new Empresa();
@@ -124,7 +134,9 @@ public class VentanaGrupal extends JFrame{
 			file = new File(file + ".csv");				// En caso de que el archivo no tenga la extension csv, ponersela
 		}
 		PrintWriter out = new PrintWriter(new FileWriter(file));
+		out.print("Nombre,RFC,Deducciones permitidas,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar\n"); 		// Poner el encabezado del archivo 
 		out.print(this.miEmpresa);
+		System.out.println(this.miEmpresa);
 		out.close();
 	}
 }
