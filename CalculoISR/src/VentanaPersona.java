@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -21,15 +23,15 @@ import java.awt.*;
 public class VentanaPersona extends JFrame implements ActionListener{
 	
 	private JPanel columnaIzquiera, columnaDerecha, columnaResultados;
-	private JRadioButton preescolar, primaria, secundaria, bachiller, tecnico, ninguno;
+	private JRadioButton primaria, secundaria, bachiller, ninguno;
 	private	JTextField tfNombre, tfRFC, tfSueldoMensual, tfAguinaldo,tfPrimaVacacional, tfHospitales, tfFuneral, tfSGMM, tfHipotecarios, tfDonativos, tfSubRetiro, tfTransporte, tfColegiatura;
-	private JLabel lbNombre, lbRFC, lbSueldoMensual, lbAguinaldo, lbPrimaVacacional, lbHospitales, lbFuneral, lbSGMM, lbHipotecarios, lbDonativos, lbSubRetiro, lbTransporte, lbNivelEscolar, lbColegiatura, saltoDeLinea, lbResultados;
-	private JButton calcular;
+	private JLabel lbNombre, lbRFC, lbSueldoMensual, lbAguinaldo, lbPrimaVacacional, lbHospitales, lbFuneral, lbSGMM, lbHipotecarios, lbDonativos, lbSubRetiro, lbTransporte, lbNivelEscolar, lbColegiatura, saltoDeLinea, lbResultados, lbResultados2, lbResultados3;
+	private JButton calcular, regresar, limpiar, guardar;
 	private String nivelEducativo;
 
 	public VentanaPersona(){
 		super("Calcular ISR Individual");
-		this.setSize(800, 600);
+		this.setSize(800, 650);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
@@ -50,7 +52,7 @@ public class VentanaPersona extends JFrame implements ActionListener{
         this.add(this.columnaDerecha,BorderLayout.CENTER);
         
         this.columnaResultados = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        this.columnaResultados.setPreferredSize(new Dimension(300,600));
+        this.columnaResultados.setPreferredSize(new Dimension(300,650));
         this.columnaResultados.setBorder(BorderFactory.createEmptyBorder(20,20,20,30));
         this.add(this.columnaResultados,BorderLayout.EAST);
         
@@ -96,31 +98,70 @@ public class VentanaPersona extends JFrame implements ActionListener{
         this.lbNivelEscolar = new JLabel("Nivel Escolar: ");
         this.ninguno = new JRadioButton("Ninguno", true);
         this.ninguno.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-        this.preescolar = new JRadioButton("Preescolar");
-        this.preescolar.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
         this.primaria = new JRadioButton("Primaria");
         this.primaria.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
         this.secundaria = new JRadioButton("Secundaria");
         this.secundaria.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-        this.bachiller = new JRadioButton("Bachillerato");
-        this.bachiller.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
-        this.tecnico = new JRadioButton("Tecnico");
-        this.tecnico.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+        this.bachiller = new JRadioButton("Preparatoria");
+        this.bachiller.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0)); 
         
+        this.primaria.addActionListener(this);
+        this.secundaria.addActionListener(this);
+        this.bachiller.addActionListener(this);
         
         ButtonGroup nivelEducativo = new ButtonGroup();        
         nivelEducativo.add(this.ninguno);
-        nivelEducativo.add(this.preescolar);
         nivelEducativo.add(this.primaria);
         nivelEducativo.add(this.secundaria);
         nivelEducativo.add(this.bachiller);
-        nivelEducativo.add(this.tecnico);
-        
         
         this.calcular = new JButton("Calcular");
+        this.calcular.setPreferredSize(new Dimension(150,30));
         this.calcular.addActionListener(this);
         
+        this.guardar = new JButton("Guardar");
+        this.guardar.setPreferredSize(new Dimension(150,30));
+        this.guardar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+//				String title;
+//				File output = new File("deduccion.txt");
+//				
+//				JFileChooser scr = new JFileChooser();
+//				// Las sigientes cuatro lineas fueron tomadas de http://stackoverflow.com/questions/10083447/selecting-folder-destination-in-java
+//				scr.setCurrentDirectory(new java.io.File("."));
+//				scr.setDialogTitle(title);
+//				scr.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//				scr.setAcceptAllFileFilterUsed(false);
+//				
+//				if(scr.showOpenDialog(scr) == JFileChooser.APPROVE_OPTION){
+//					output = scr.getCurrentDirectory();
+//				}
+//				
+//				PrintWriter fl = new PrintWriter(output);
+			}
+        });
+        
+        this.limpiar = new JButton("Limpiar");
+        this.limpiar.setPreferredSize(new Dimension(150,30));
+        this.limpiar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				VentanaPersona.this.dispose();
+				new VentanaPersona();
+			}
+        });
+        
+        this.regresar = new JButton("Regresar");
+        this.regresar.setPreferredSize(new Dimension(150,30));
+        this.regresar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				VentanaPersona.this.dispose();
+				new Home();
+			}
+        });
+        
         this.lbResultados = new JLabel("");
+        this.lbResultados2 = new JLabel("");
+        this.lbResultados3 = new JLabel("");
         
         // Anadir componentes al panel
         this.columnaIzquiera.add(lbNombre);
@@ -153,20 +194,21 @@ public class VentanaPersona extends JFrame implements ActionListener{
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(this.ninguno);
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
-        this.columnaDerecha.add(this.preescolar);
-        this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(this.primaria);
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(this.secundaria);
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(this.bachiller);
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
-        this.columnaDerecha.add(this.tecnico);
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(saltoDeLinea = new JLabel("⠀⠀⠀⠀⠀⠀⠀⠀⠀"));
         this.columnaDerecha.add(calcular);
+        this.columnaDerecha.add(limpiar);
+        this.columnaDerecha.add(regresar);
         
         this.columnaResultados.add(this.lbResultados);
+        this.columnaResultados.add(this.lbResultados2);
+        this.columnaResultados.add(this.lbResultados3);
     
         this.setVisible(true);
 	}
@@ -174,20 +216,14 @@ public class VentanaPersona extends JFrame implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		if(e.getSource() == this.preescolar){
-			this.nivelEducativo = "preescolar";
-		}
-		else if (e.getSource() == this.primaria){
+		if (e.getSource() == this.primaria){
 			this.nivelEducativo = "primaria";
 		}
 		else if (e.getSource() == this.secundaria){
 			this.nivelEducativo = "secundaria";
 		}
 		else if (e.getSource() == this.bachiller){
-			this.nivelEducativo = "bachillerato";
-		}
-		else if (e.getSource() == this.tecnico){
-			this.nivelEducativo = "tecnico";
+			this.nivelEducativo = "preparatoria";
 		}
 		else if (e.getSource() == this.ninguno){
 			this.nivelEducativo = "";
@@ -208,15 +244,16 @@ public class VentanaPersona extends JFrame implements ActionListener{
 			   transporte = Double.parseDouble(this.tfTransporte.getText()),
 			   colegiatura = Double.parseDouble(this.tfColegiatura.getText());
 		
-		// Deducciones needs fixing. Line below is temporal
-		this.nivelEducativo = "preescolar";
-		
 		Empleado persona = new Empleado(nombre,rfc,sueldo,aguinaldo,prima,medicos,funeral,sgmm,hipoteca,donativos,retiro,transporte,this.nivelEducativo,colegiatura);
 		persona.hacerDeclaracionAnual();
 		
-		String resultados = persona.getIngresos().ingresosToString() + persona.getDeduccion().deduccionToString() + persona.getISR().isrToString();
+		String resultados = persona.getIngresos().ingresosToString();
 		this.lbResultados.setText(resultados);
-		
+		resultados = persona.getDeduccion().deduccionToString();
+		this.lbResultados2.setText(resultados);
+		resultados = persona.getISR().isrToString();
+		this.lbResultados3.setText(resultados);
+
 		}
 	}
 }

@@ -55,7 +55,7 @@ public class Ingresos {
 	 }
 	 
 	 public String ingresosToString(){
-		 return "<html><b>INGRESOS</b> <br><br>" +
+		 return "<html>-----------------------<br><b>INGRESOS</b><br>-----------------------<br>" +
 		 		"<b>Sueldo Mensual:</b>            $" + Double.toString(this.sueldoMensual) + "<br>" +
 				"<b>Total Sueldo Anual:</b>        $" + Double.toString(this.getSueldoAnual()) + "<br>" +
 		 		"<b>Aguinaldo:</b>                 $" + Double.toString(this.aguinaldo) + "<br>" +
