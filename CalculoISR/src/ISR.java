@@ -42,8 +42,7 @@ public class ISR {
 	}
 	
 	public double getPagoTotal(){
-		//return this.getPagoExcedente() + this.getCuotaFija();
-		return Math.round(this.getPagoExcedente() + this.getCuotaFija()*100.00)/100.00;
+		return this.getPagoExcedente() + this.getCuotaFija();
 	}
 	
 	private double vLookUp(double searchValue, int columnResult){

@@ -38,7 +38,7 @@ public class VentanaPersona extends JFrame implements ActionListener{
 		this.setSize(800, 650);
 
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setResizable(false);
+		//this.setResizable(false);
 
         // Las siguientes 2 lineas de codigo fueron tomadas de http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
