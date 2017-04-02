@@ -70,7 +70,7 @@ public class ISR {
 		 		"<b>Cuota Fija:</b>       	   $" + Double.toString(this.getCuotaFija()) + "<br>" +
 		 		"<b>% Excedente:</b>         	" + Double.toString(this.getPorcentajeExcedente()*100) + "%<br>" +
 		 		"<b>Pago por Excedente:</b>    $" + Double.toString(this.getPagoExcedente()) + "<br>" +
-		 		"<b>TOTAL A PAGAR:</b>         $" + Double.toString(this.getPagoTotal()) + "<br></html>";
+		 		"<b>TOTAL A PAGAR:</b>         $" + Double.toString(this.getPagoTotal()) + "</html>";
 	 }
 	
 }

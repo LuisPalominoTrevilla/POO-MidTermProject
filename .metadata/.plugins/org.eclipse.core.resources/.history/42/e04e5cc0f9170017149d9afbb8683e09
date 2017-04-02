@@ -65,7 +65,7 @@ public class Ingresos {
 		 		"<b>Prima Vacacional Excenta:</b>  $" + Double.toString(this.getPrimaVacacionalExcenta()) + "<br>" +
 		 		"<b>Prima Vacacional Gravada:</b>  $" + Double.toString(this.getPrimaVacacionalGravada()) + "<br>" +
 		 		"<b>Total Ingresos:</b>            $" + Double.toString(this.getTotalIngresos()) + "<br>" +
-		 		"<b>Total Ingresos Gravados:</b>   $" + Double.toString(this.getIngresosGravados()) + "<br></html>";
+		 		"<b>Total Ingresos Gravados:</b>   $" + Double.toString(this.getIngresosGravados()) + "</html>";
 	 }
 
 }

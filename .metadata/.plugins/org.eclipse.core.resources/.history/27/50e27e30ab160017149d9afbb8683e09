@@ -6,8 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.swing.BorderFactory;
@@ -30,7 +28,7 @@ public class VentanaPersona extends JFrame implements ActionListener{
 	private	JTextField tfNombre, tfRFC, tfSueldoMensual, tfAguinaldo,tfPrimaVacacional, tfHospitales, tfFuneral, tfSGMM, tfHipotecarios, tfDonativos, tfSubRetiro, tfTransporte, tfColegiatura;
 	private JLabel lbNombre, lbRFC, lbSueldoMensual, lbAguinaldo, lbPrimaVacacional, lbHospitales, lbFuneral, lbSGMM, lbHipotecarios, lbDonativos, lbSubRetiro, lbTransporte, lbNivelEscolar, lbColegiatura, saltoDeLinea, lbResultados, lbResultados2, lbResultados3;
 	private JButton calcular, regresar, limpiar, guardar;
-	private String nivelEducativo, printString;
+	private String nivelEducativo;
 	//private Component[] components; this.components = new Component[11];
 
 	public VentanaPersona(){
@@ -125,19 +123,26 @@ public class VentanaPersona extends JFrame implements ActionListener{
         
         this.guardar = new JButton("Guardar");
         this.guardar.setPreferredSize(new Dimension(150,30));
-        
         this.guardar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-								
-				try{
-					FileWriter fw = new FileWriter("deduccion.html");
-					PrintWriter pw = new PrintWriter(fw);
-					pw.println(VentanaPersona.this.printString);
-					pw.close();
-					Desktop.getDesktop().open(new File("deduccion.html"));
-				}
-				catch (IOException e2) {}
+				String title = "";
+				File directory = new File("");
 				
+				JFileChooser scr = new JFileChooser();
+				// Las sigientes cuatro lineas fueron tomadas de http://stackoverflow.com/questions/10083447/selecting-folder-destination-in-java
+				scr.setCurrentDirectory(new java.io.File("."));
+				scr.setDialogTitle(title);
+				scr.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				scr.setAcceptAllFileFilterUsed(false);
+				
+				if(scr.showOpenDialog(scr) == JFileChooser.APPROVE_OPTION){
+					directory = scr.getCurrentDirectory();
+				}
+				
+				try {
+					PrintWriter fl = new PrintWriter(new File(directory, "isr.txt"));
+					fl.println(VentanaPersona.this.lbResultados);
+				} catch (FileNotFoundException e1) {}
 			}
         });
         
@@ -255,17 +260,12 @@ public class VentanaPersona extends JFrame implements ActionListener{
 		Empleado persona = new Empleado(nombre,rfc,sueldo,aguinaldo,prima,medicos,funeral,sgmm,hipoteca,donativos,retiro,transporte,this.nivelEducativo,colegiatura);
 		persona.hacerDeclaracionAnual();
 		
-		this.printString = "<html><b>Nombre: </b>" + this.tfNombre.getText() + "<br><b>RFC: </b>" + this.tfRFC.getText() + "<br></html>";
-		
 		String resultados = persona.getIngresos().ingresosToString();
 		this.lbResultados.setText(resultados);
-		this.printString += resultados;
 		resultados = persona.getDeduccion().deduccionToString();
 		this.lbResultados2.setText(resultados);
-		this.printString += resultados;
 		resultados = persona.getISR().isrToString();
 		this.lbResultados3.setText(resultados);
-		this.printString += resultados;
 		
 		// Desactivar todos los campos
 		this.tfNombre.setEditable(false);

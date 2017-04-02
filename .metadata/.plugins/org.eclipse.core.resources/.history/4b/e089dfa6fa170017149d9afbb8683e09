@@ -128,7 +128,7 @@ public class VentanaPersona extends JFrame implements ActionListener{
         
         this.guardar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-								
+				
 				try{
 					FileWriter fw = new FileWriter("deduccion.html");
 					PrintWriter pw = new PrintWriter(fw);
@@ -255,11 +255,9 @@ public class VentanaPersona extends JFrame implements ActionListener{
 		Empleado persona = new Empleado(nombre,rfc,sueldo,aguinaldo,prima,medicos,funeral,sgmm,hipoteca,donativos,retiro,transporte,this.nivelEducativo,colegiatura);
 		persona.hacerDeclaracionAnual();
 		
-		this.printString = "<html><b>Nombre: </b>" + this.tfNombre.getText() + "<br><b>RFC: </b>" + this.tfRFC.getText() + "<br></html>";
-		
 		String resultados = persona.getIngresos().ingresosToString();
 		this.lbResultados.setText(resultados);
-		this.printString += resultados;
+		this.printString = resultados;
 		resultados = persona.getDeduccion().deduccionToString();
 		this.lbResultados2.setText(resultados);
 		this.printString += resultados;

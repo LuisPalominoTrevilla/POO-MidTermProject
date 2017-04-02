@@ -30,7 +30,7 @@ public class VentanaPersona extends JFrame implements ActionListener{
 	private	JTextField tfNombre, tfRFC, tfSueldoMensual, tfAguinaldo,tfPrimaVacacional, tfHospitales, tfFuneral, tfSGMM, tfHipotecarios, tfDonativos, tfSubRetiro, tfTransporte, tfColegiatura;
 	private JLabel lbNombre, lbRFC, lbSueldoMensual, lbAguinaldo, lbPrimaVacacional, lbHospitales, lbFuneral, lbSGMM, lbHipotecarios, lbDonativos, lbSubRetiro, lbTransporte, lbNivelEscolar, lbColegiatura, saltoDeLinea, lbResultados, lbResultados2, lbResultados3;
 	private JButton calcular, regresar, limpiar, guardar;
-	private String nivelEducativo, printString;
+	private String nivelEducativo;
 	//private Component[] components; this.components = new Component[11];
 
 	public VentanaPersona(){
@@ -128,13 +128,12 @@ public class VentanaPersona extends JFrame implements ActionListener{
         
         this.guardar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-								
+				
 				try{
-					FileWriter fw = new FileWriter("deduccion.html");
+					FileWriter fw = new FileWriter("deduccion.txt");
 					PrintWriter pw = new PrintWriter(fw);
-					pw.println(VentanaPersona.this.printString);
+					pw.println(VentanaPersona.this.lbResultados);
 					pw.close();
-					Desktop.getDesktop().open(new File("deduccion.html"));
 				}
 				catch (IOException e2) {}
 				
@@ -255,17 +254,12 @@ public class VentanaPersona extends JFrame implements ActionListener{
 		Empleado persona = new Empleado(nombre,rfc,sueldo,aguinaldo,prima,medicos,funeral,sgmm,hipoteca,donativos,retiro,transporte,this.nivelEducativo,colegiatura);
 		persona.hacerDeclaracionAnual();
 		
-		this.printString = "<html><b>Nombre: </b>" + this.tfNombre.getText() + "<br><b>RFC: </b>" + this.tfRFC.getText() + "<br></html>";
-		
 		String resultados = persona.getIngresos().ingresosToString();
 		this.lbResultados.setText(resultados);
-		this.printString += resultados;
 		resultados = persona.getDeduccion().deduccionToString();
 		this.lbResultados2.setText(resultados);
-		this.printString += resultados;
 		resultados = persona.getISR().isrToString();
 		this.lbResultados3.setText(resultados);
-		this.printString += resultados;
 		
 		// Desactivar todos los campos
 		this.tfNombre.setEditable(false);

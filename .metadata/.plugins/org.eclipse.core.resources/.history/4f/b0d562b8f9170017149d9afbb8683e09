@@ -76,7 +76,7 @@ public class Deduccion {
 		 		"<b>Subcuenta Retiro:</b>          		 $" + Double.toString(this.retiro) + "<br>" +
 		 		"<b>Transporte Escolar:</b>  			 $" + Double.toString(this.transporteEscolar) + "<br>" +
 		 		"<b>Colegiatura:</b>  					 $" + Double.toString(this.getMaximoDeducirColegiatura()) + "<br>" +
-		 		"<b>Total Deducciones:</b>            	 $" + Double.toString(this.getTotalDeducciones()) + "<br></html>";
+		 		"<b>Total Deducciones:</b>            	 $" + Double.toString(this.getTotalDeducciones()) + "</html>";
 	 }
 	
 	

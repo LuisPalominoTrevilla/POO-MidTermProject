@@ -44,6 +44,8 @@ public class Deduccion {
 			return (this.MAXIMO_SECUNDARIA < this.colegiatura)? this.MAXIMO_SECUNDARIA: this.colegiatura;
 		case "preparatoria":
 			return (this.MAXIMO_PREPARATORIA < this.colegiatura)? this.MAXIMO_PREPARATORIA: this.colegiatura;
+		case "":
+			return 0.0;
 		default:
 			return 0.0;
 		}
