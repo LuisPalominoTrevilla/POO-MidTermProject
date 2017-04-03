@@ -48,8 +48,12 @@ public class ISR {
 	private double vLookUp(double searchValue, int columnResult){
 		/*
 		 * La variable searchValue debe ser mayor o igual a .01
+		 * En caso de ser menor a .1 se regresa 0
 		 * columnResult puede tomar los siguientes valores: 0, 2, 3
 		 */
+		if(searchValue < .1f){
+			return 0;
+		}
 		for(int i = 0; i < this.LIMITE_INFERIOR.length-1; i++){
 			if(searchValue >= this.LIMITE_INFERIOR[i] && searchValue <= this.LIMITE_SUPERIOR[i]){
 				return this.table[columnResult][i];
@@ -62,7 +66,7 @@ public class ISR {
 		return String.format("%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", this.deduccion, this.getMontoISR(), this.getCuotaFija(), this.getPorcentajeExcedente()*100, this.getPagoExcedente(), this.getPagoTotal());
 	}
 	
-	public String isrToString(){
+	public String desglosar(){
 		 return "<html>-----------------------<br><b>TOTAL</b><br>-----------------------<br>" +
 		 		"<b>Deduccion Permitida:</b>   $" + Double.toString(this.getDeduccionPermitida()) + "<br>" +
 				"<b>Monto Total Gravado:</b>   $" + Double.toString(this.getMontoISR()) + "<br>" +

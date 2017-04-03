@@ -29,6 +29,8 @@ public class Empresa {
 				temp[i] = this.empleados[i];
 			}
 			this.empleados = temp;
+			//Aniadir al empleado en espera
+			this.empleados[this.empleadosActivos++] = empleado;
 		}
 	}
 	

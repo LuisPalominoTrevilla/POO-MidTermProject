@@ -34,9 +34,9 @@ public class Empleado extends Persona{
 	
 	public String toString(){
 		if(this.impuestoISR != null){
-			return String.format("%s,%s,%s", this.getNombre(), this.rfc, this.impuestoISR);
+			return String.format("%s,%s,%s,%s,%s", this.getNombre(), this.rfc, this.ingresos, this.deducciones, this.impuestoISR);
 		}else{
-			return String.format("%s,%s", this.getNombre(), this.rfc);
+			return String.format("%s,%s,%s,%s", this.getNombre(), this.rfc, this.ingresos, this.deducciones);
 		}
 	}
 }

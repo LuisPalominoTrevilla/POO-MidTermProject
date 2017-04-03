@@ -17,8 +17,7 @@ public class Home extends JFrame{
 	private JPanel panel;
 	private JRadioButton opcion1, opcion2;
 	private JButton continuar;
-	private JFrame ventanaGrupal;
-	// Aniadir instancia de ventanaPersona
+	private JFrame ventanaGrupal, ventanaPersona;
 	
 	public Home(){
 		super("Bienvenido");
@@ -51,7 +50,11 @@ public class Home extends JFrame{
 
 			public void actionPerformed(ActionEvent e) {
 				if(Home.this.opcion1.isSelected()){
-					new VentanaPersona();					// Modificar
+					if (Home.this.ventanaPersona != null){
+						Home.this.ventanaPersona.setVisible(true);
+					}else{
+						Home.this.ventanaPersona = new VentanaPersona(Home.this);
+					}
 				}else{
 					if (Home.this.ventanaGrupal != null){
 						Home.this.ventanaGrupal.setVisible(true);

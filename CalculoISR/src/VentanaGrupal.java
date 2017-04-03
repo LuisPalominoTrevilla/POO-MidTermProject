@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -35,7 +36,7 @@ public class VentanaGrupal extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.home = home;
-		this.fc = new JFileChooser("C:\\Users\\Luis Palomino\\Desktop\\TEC\\Segundo semestre");
+		this.fc = new JFileChooser("C:\\");
 		this.fc.setFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
         
 		this.panelOpciones = new JPanel();
@@ -77,11 +78,10 @@ public class VentanaGrupal extends JFrame{
 				VentanaGrupal.this.miEmpresa.hacerDeclaracionAnual();		// Mandar a hacer a todos los empleados su declaración anual
 				try{
 					VentanaGrupal.this.fc.setDialogTitle("Seleccione la ubicacion donde desea guardar el archivo generador");
-					VentanaGrupal.this.fc.setSelectedFile(new File(".csv"));
+					VentanaGrupal.this.fc.setSelectedFile(new File("resultados.csv"));
 					int seleccion = VentanaGrupal.this.fc.showSaveDialog(VentanaGrupal.this);
 					if(seleccion == JFileChooser.APPROVE_OPTION){
 						VentanaGrupal.this.generarImpuestos(VentanaGrupal.this.fc.getSelectedFile());
-						JOptionPane.showMessageDialog(VentanaGrupal.this, "El archivo se ha generado y guardado con éxito.", "", JOptionPane.PLAIN_MESSAGE);
 					}
 				}catch(IOException ex){
 					JOptionPane.showMessageDialog(VentanaGrupal.this,"Ocurrió un error al guardar el archivo.", "Error de escritura",JOptionPane.ERROR_MESSAGE);
@@ -114,7 +114,7 @@ public class VentanaGrupal extends JFrame{
 			throw new IOException();					// Asegurarse que el metodo trabaja solo con archivos CSV
 		}
 		BufferedReader in = new BufferedReader(new FileReader(file));
-		String line = in.readLine();
+		String line;
 		this.miEmpresa = new Empresa();
 		while((line = in.readLine()) != null){
 			StringTokenizer token = new StringTokenizer(line, ",");
@@ -134,9 +134,16 @@ public class VentanaGrupal extends JFrame{
 			file = new File(file + ".csv");				// En caso de que el archivo no tenga la extension csv, ponersela
 		}
 		PrintWriter out = new PrintWriter(new FileWriter(file));
-		out.print("Nombre,RFC,Deducciones permitidas,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar\n"); 		// Poner el encabezado del archivo 
+		out.print("Nombre,RFC,Sueldo mensual,Ingreso anual,Aguinaldo,Aguinaldo exento,Aguinaldo gravado,Prima vacacional,Prima vacacional excenta,Prima vacacional gravada,Total ingresos gravan,Medicos y hospitales,Gastos funerarios,SGMM,Hipotecarios,Donativos,Subcuenta retiro,Transporte escolar,Nivel educativo,Maximo a deducir colegiatura,Colegiatura pagada,Total deducciones (sin retiro),Deduccion permitida 10%,Monto ISR,Cuota fija,Porcentaje excedente,Pago excedente,Total a pagar\n"); 		// Poner el encabezado del archivo 
 		out.print(this.miEmpresa);
-		System.out.println(this.miEmpresa);
 		out.close();
+		
+		// Abrir el archivo, recuperado de http://stackoverflow.com/questions/17276688/open-excel-from-java-application
+		if (Desktop.isDesktopSupported()) {
+		    Desktop.getDesktop().open(file);
+		} else {
+			JOptionPane.showMessageDialog(VentanaGrupal.this, "El archivo se ha generado y guardado con éxito.", "", JOptionPane.PLAIN_MESSAGE);
+			
+		}
 	}
 }

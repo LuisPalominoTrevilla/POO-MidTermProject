@@ -38,7 +38,6 @@ public class Ingresos {
 		 if(this.primaVacacional > this.salarioMinimo*15){	// Checa si prima vacacional excede limite de deduccion
 			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;		// Redondear para evitar impresicion
 		 }
-
 		 return primaReturn;
 	 }
 
@@ -54,7 +53,11 @@ public class Ingresos {
 		 return this.getSueldoAnual() + getAguinaldoGravado() + getPrimaVacacionalGravada();
 	 }
 	 
-	 public String ingresosToString(){
+	 public String toString(){
+		 return String.format("%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,%.2f", this.sueldoMensual, this.getSueldoAnual(), this.aguinaldo, this.getAguinaldoExcento(), this.getAguinaldoGravado(), this.primaVacacional, this.getPrimaVacacionalExcenta(), this.getPrimaVacacionalGravada(), this.getIngresosGravados());
+	 }
+	 
+	 public String desglosar(){
 		 return "<html>-----------------------<br><b>INGRESOS</b><br>-----------------------<br>" +
 		 		"<b>Sueldo Mensual:</b>            $" + Double.toString(this.sueldoMensual) + "<br>" +
 				"<b>Total Sueldo Anual:</b>        $" + Double.toString(this.getSueldoAnual()) + "<br>" +
