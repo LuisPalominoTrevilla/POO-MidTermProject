@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -165,7 +166,7 @@ public class PanelResultados extends JPanel{
 					if(PanelResultados.this.printString == ""){
 						throw new IOException();
 					}
-					JFileChooser fc = new JFileChooser("C:\\");
+					JFileChooser fc = new JFileChooser(new File(System.getProperty("user.dir")));		// Parte del codigo para poner ubicacion tomada de http://stackoverflow.com/questions/21534515/jfilechooser-open-in-current-directory
 					fc.setDialogTitle("Seleccione la ubicacion donde desea guardar el archivo");
 					fc.setSelectedFile(new File("resultados.html"));
 					fc.setFileFilter(new FileNameExtensionFilter("HTML File", "html"));
@@ -181,9 +182,10 @@ public class PanelResultados extends JPanel{
 						pw.close();
 						Desktop.getDesktop().open(file);		// Abrir en el navegador
 					}
-				}
-				catch (IOException e2) {
-					JOptionPane.showMessageDialog(PanelResultados.this,"No se pudo generar el archivo html.", "Error",JOptionPane.ERROR_MESSAGE);
+				}catch(FileNotFoundException e1){
+					JOptionPane.showMessageDialog(PanelResultados.this,"No tienes permiso para guardar en esta ubicacion. Prueba guardar en documentos.", "Error",JOptionPane.WARNING_MESSAGE);
+				}catch (IOException e2) {
+					JOptionPane.showMessageDialog(PanelResultados.this,"No se puede generar el archivo html.", "Error",JOptionPane.ERROR_MESSAGE);
 				}
 			}
         });

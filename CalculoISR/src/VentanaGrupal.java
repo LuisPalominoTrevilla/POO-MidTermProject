@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class VentanaGrupal extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.home = home;
-		this.fc = new JFileChooser("C:\\");
+		this.fc = new JFileChooser(new File(System.getProperty("user.dir")));				// Parte del codigo para poner direccion tomada de http://stackoverflow.com/questions/21534515/jfilechooser-open-in-current-directory
 		this.fc.setFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
         
 		this.panelOpciones = new JPanel();
@@ -83,6 +84,8 @@ public class VentanaGrupal extends JFrame{
 					if(seleccion == JFileChooser.APPROVE_OPTION){
 						VentanaGrupal.this.generarImpuestos(VentanaGrupal.this.fc.getSelectedFile());
 					}
+				}catch(FileNotFoundException e1){
+					JOptionPane.showMessageDialog(VentanaGrupal.this,"No tienes permiso para guardar en esta ubicacion. Prueba guardar en documentos.", "Error",JOptionPane.WARNING_MESSAGE);
 				}catch(IOException ex){
 					JOptionPane.showMessageDialog(VentanaGrupal.this,"Ocurrió un error al guardar el archivo.", "Error de escritura",JOptionPane.ERROR_MESSAGE);
 				}
