@@ -13,7 +13,9 @@
  * 
  */
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -28,6 +30,9 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -103,17 +108,18 @@ public class PanelResultados extends JPanel{
         this.labelsDeducciones = new JLabel[11];
         
 		// Inicializar paneles
-        this.panelIngresos = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        
+        this.panelIngresos = new JPanel(new BorderLayout());
 		this.panelIngresos.setPreferredSize(new Dimension(300, 325));
 		this.panelIngresos.setBackground(new Color(229, 220, 220));
 		this.add(this.panelIngresos);
 		
-		this.panelDeducciones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		this.panelDeducciones = new JPanel(new BorderLayout());
         this.panelDeducciones.setPreferredSize(new Dimension(300, 325));
         this.panelDeducciones.setBackground(new Color(229, 220, 220));
         this.add(this.panelDeducciones);
 		
-		this.panelImpuesto = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		this.panelImpuesto = new JPanel(new BorderLayout());
 		this.panelImpuesto.setPreferredSize(new Dimension(300, 200));
 		this.panelImpuesto.setBackground(new Color(229, 220, 220));
 		this.add(this.panelImpuesto);
@@ -126,11 +132,11 @@ public class PanelResultados extends JPanel{
 		
 		
 		// Inicializar Componentes label
-		this.labelsIngresos[0] = new JLabel("                 Nombre: ");
-		this.labelsIngresos[1] = new JLabel("                 RFC: ");
+		this.labelsIngresos[0] = new JLabel("Nombre: ");
+		this.labelsIngresos[1] = new JLabel("RFC: ");
 		this.labelsIngresos[2] = new JLabel("Sueldo mensual:");
 		this.labelsIngresos[3] = new JLabel("Ingreso anual: ");
-		this.labelsIngresos[4] = new JLabel("            Aguinaldo: ");
+		this.labelsIngresos[4] = new JLabel("Aguinaldo: ");
 		this.labelsIngresos[5] = new JLabel("Aguinaldo excento: ");
 		this.labelsIngresos[6] = new JLabel("Aguinaldo gravado: ");
 		this.labelsIngresos[7] = new JLabel("Prima vacacional: ");
@@ -139,22 +145,32 @@ public class PanelResultados extends JPanel{
 		this.labelsIngresos[10] = new JLabel("Total Ingresos Gravados: ");
 		this.labelsDeducciones[0] = new JLabel("Medicos y hospitales: ");
 		this.labelsDeducciones[1] = new JLabel("Gastis funerarios: ");
-		this.labelsDeducciones[2] = new JLabel("            SGMM: ");
-		this.labelsDeducciones[3] = new JLabel("            Hipotecarios: ");
-		this.labelsDeducciones[4] = new JLabel("            Donativos: ");
+		this.labelsDeducciones[2] = new JLabel("SGMM: ");
+		this.labelsDeducciones[3] = new JLabel("Hipotecarios: ");
+		this.labelsDeducciones[4] = new JLabel("Donativos: ");
 		this.labelsDeducciones[5] = new JLabel("Subcuenta de retiro:");
 		this.labelsDeducciones[6] = new JLabel("Transporte escolar: ");
 		this.labelsDeducciones[7] = new JLabel("Nivel educativo: ");
 		this.labelsDeducciones[8] = new JLabel("Maximo a deducir colegiatura: ");
 		this.labelsDeducciones[9] = new JLabel("Colegiatura pagada: ");
 		this.labelsDeducciones[10] = new JLabel("Total deducciones (sin retiro):");
-        this.labelsImpuestos[0] = new JLabel("Deducciones Permitidas: ");
-        this.labelsImpuestos[1] = new JLabel("Monto calculo de ISR: ");
-        this.labelsImpuestos[2] = new JLabel("Cuota fija: ");
-        this.labelsImpuestos[3] = new JLabel("Porcentaje excedente: ");
-        this.labelsImpuestos[4] = new JLabel("Pago excedente: ");
-        this.labelsImpuestos[5] = new JLabel("Total a pagar: ");
+        this.labelsImpuestos[0] = new JLabel("Deducciones Permitidas:");
+        this.labelsImpuestos[1] = new JLabel("Monto calculo de ISR:");
+        this.labelsImpuestos[2] = new JLabel("Cuota fija:");
+        this.labelsImpuestos[3] = new JLabel("Porcentaje excedente:");
+        this.labelsImpuestos[4] = new JLabel("Pago excedente:");
+        this.labelsImpuestos[5] = new JLabel("Total a pagar:");
         this.labelsImpuestos[5].setFont(new Font("default", Font.BOLD, 16));
+        
+        for(int i = 0; i < this.labelsIngresos.length; i++){
+        	this.labelsIngresos[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
+        }
+        for(int i = 0; i < this.labelsDeducciones.length; i++){
+        	this.labelsDeducciones[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
+        }
+        for(int i = 0; i < this.labelsImpuestos.length; i++){
+        	this.labelsImpuestos[i].setAlignmentX(Component.RIGHT_ALIGNMENT);
+        }
         
         
         // Inicializar Componentes textField
@@ -162,16 +178,19 @@ public class PanelResultados extends JPanel{
         	this.textFieldsIngresos[i] = new JTextField(10);
         	this.textFieldsIngresos[i].setEditable(false);
         	this.textFieldsIngresos[i].setBackground(new Color(249, 249, 249));
+        	this.textFieldsIngresos[i].setMaximumSize(this.textFieldsIngresos[i].getPreferredSize());
         }
         for(int i = 0; i < this.textFieldsDeducciones.length; i++){
         	this.textFieldsDeducciones[i] = new JTextField(10);
         	this.textFieldsDeducciones[i].setEditable(false);
         	this.textFieldsDeducciones[i].setBackground(new Color(249, 249, 249));
+        	this.textFieldsDeducciones[i].setMaximumSize(this.textFieldsDeducciones[i].getPreferredSize());
         }
         for(int i = 0; i < this.textFieldsImpuestos.length; i++){
         	this.textFieldsImpuestos[i] = new JTextField(10);
         	this.textFieldsImpuestos[i].setEditable(false);
         	this.textFieldsImpuestos[i].setBackground(new Color(249, 249, 249));
+        	this.textFieldsImpuestos[i].setMaximumSize(this.textFieldsImpuestos[i].getPreferredSize());
         }
         
         // Inicializar Botones
@@ -234,32 +253,73 @@ public class PanelResultados extends JPanel{
 			}
 		});
 		
+        
         //Aniadir al panel ingresos
-        JLabel tituloIngresos = new JLabel("*********************   INGRESOS   **********************");
+        JLabel tituloIngresos = new JLabel("*******************   INGRESOS   ********************");
         tituloIngresos.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        this.panelIngresos.add(tituloIngresos);						// Aniadimos el encabezado para los ingresos
+        this.panelIngresos.add(tituloIngresos, BorderLayout.NORTH);					// Aniadimos el encabezado para los ingresos
+        //Crear paneles para labels y textfields
+        JPanel ingresosIzquierda = new JPanel();
+        ingresosIzquierda.setLayout(new BoxLayout(ingresosIzquierda, BoxLayout.PAGE_AXIS));
+        ingresosIzquierda.setBackground(new Color(229, 220, 220));
+        JPanel ingresosDerecha = new JPanel();
+        ingresosDerecha.setLayout(new BoxLayout(ingresosDerecha, BoxLayout.PAGE_AXIS));
+        ingresosDerecha.setBackground(new Color(229, 220, 220));
+        
+        ingresosIzquierda.add(Box.createRigidArea(new Dimension(0, 3)));
         for(int i = 0; i < this.labelsIngresos.length; i++){
-        	this.panelIngresos.add(this.labelsIngresos[i]);
-        	this.panelIngresos.add(this.textFieldsIngresos[i]);
+        	ingresosIzquierda.add(this.labelsIngresos[i]);
+        	ingresosIzquierda.add(Box.createRigidArea(new Dimension(0, 9)));
+        	ingresosDerecha.add(this.textFieldsIngresos[i]);
+        	ingresosDerecha.add(Box.createRigidArea(new Dimension(0, 5)));
         }
+        this.panelIngresos.add(ingresosIzquierda, BorderLayout.WEST);
+        this.panelIngresos.add(ingresosDerecha, BorderLayout.CENTER);
+        
         
         //Aniadir al panel deducciones
-        JLabel tituloDeducciones = new JLabel("*********************   DEDUCCIONES   **********************");
+        JLabel tituloDeducciones = new JLabel("*******************   DEDUCCIONES   ********************");
         tituloDeducciones.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        this.panelDeducciones.add(tituloDeducciones);
+        this.panelDeducciones.add(tituloDeducciones, BorderLayout.NORTH);
+        //Crear paneles para labels y textfields
+        JPanel deduccionesIzquierda = new JPanel();
+        deduccionesIzquierda.setLayout(new BoxLayout(deduccionesIzquierda, BoxLayout.PAGE_AXIS));
+        deduccionesIzquierda.setBackground(new Color(229, 220, 220));
+        JPanel deduccionesDerecha = new JPanel();
+        deduccionesDerecha.setLayout(new BoxLayout(deduccionesDerecha, BoxLayout.PAGE_AXIS));
+        deduccionesDerecha.setBackground(new Color(229, 220, 220));
+        
+        deduccionesIzquierda.add(Box.createRigidArea(new Dimension(0, 3)));
         for(int i = 0; i < this.labelsDeducciones.length; i++){
-        	this.panelDeducciones.add(this.labelsDeducciones[i]);
-        	this.panelDeducciones.add(this.textFieldsDeducciones[i]);
+        	deduccionesIzquierda.add(this.labelsDeducciones[i]);
+        	deduccionesIzquierda.add(Box.createRigidArea(new Dimension(0, 9)));
+        	deduccionesDerecha.add(this.textFieldsDeducciones[i]);
+        	deduccionesDerecha.add(Box.createRigidArea(new Dimension(0, 5)));
         }
+        this.panelDeducciones.add(deduccionesIzquierda, BorderLayout.WEST);
+        this.panelDeducciones.add(deduccionesDerecha, BorderLayout.CENTER);
         
         //Aniadir al panel impuestos
-        JLabel tituloBalance = new JLabel("*********************   BALANCE   **********************");
+        JLabel tituloBalance = new JLabel("*******************   BALANCE   *******************");
         tituloBalance.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
-        this.panelImpuesto.add(tituloBalance);									// Aniadimos el encabezado para los impuestos
+        this.panelImpuesto.add(tituloBalance, BorderLayout.NORTH);									// Aniadimos el encabezado para los impuestos
+        //Crear paneles para labels y textfields
+        JPanel impuestosIzquierda = new JPanel();
+        impuestosIzquierda.setLayout(new BoxLayout(impuestosIzquierda, BoxLayout.PAGE_AXIS));
+        impuestosIzquierda.setBackground(new Color(229, 220, 220));
+        JPanel impuestosDerecha = new JPanel();
+        impuestosDerecha.setLayout(new BoxLayout(impuestosDerecha, BoxLayout.PAGE_AXIS));
+        impuestosDerecha.setBackground(new Color(229, 220, 220));
+        
+        impuestosIzquierda.add(Box.createRigidArea(new Dimension(0, 3)));
         for(int i = 0; i < this.labelsImpuestos.length; i++){
-        	this.panelImpuesto.add(this.labelsImpuestos[i]);
-        	this.panelImpuesto.add(this.textFieldsImpuestos[i]);
+        	impuestosIzquierda.add(this.labelsImpuestos[i]);
+        	impuestosIzquierda.add(Box.createRigidArea(new Dimension(0, 8)));
+        	impuestosDerecha.add(this.textFieldsImpuestos[i]);
+        	impuestosDerecha.add(Box.createRigidArea(new Dimension(0, 5)));
         }
+        this.panelImpuesto.add(impuestosIzquierda, BorderLayout.WEST);
+        this.panelImpuesto.add(impuestosDerecha, BorderLayout.CENTER);
         
         //Aniadir al panel botones
         this.panelBotones.add(this.guardar);
