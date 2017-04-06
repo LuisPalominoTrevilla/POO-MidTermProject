@@ -1,3 +1,18 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.lang.Math;
 
 public class ISR {
@@ -73,7 +88,7 @@ public class ISR {
 		 		"<b>Cuota Fija:</b>       	   $" + Double.toString(this.getCuotaFija()) + "<br>" +
 		 		"<b>% Excedente:</b>         	" + Double.toString(this.getPorcentajeExcedente()*100) + "%<br>" +
 		 		"<b>Pago por Excedente:</b>    $" + Double.toString(this.getPagoExcedente()) + "<br>" +
-		 		"<b>TOTAL A PAGAR:</b>         $" + Double.toString(this.getPagoTotal()) + "<br></html>";
+		 		"<b>TOTAL A PAGAR:</b>         $" + String.format("%.2f", this.getPagoTotal()) + "<br></html>";
 	 }
 	
 }

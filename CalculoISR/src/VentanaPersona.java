@@ -1,14 +1,23 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,12 +33,17 @@ public class VentanaPersona extends JFrame implements ActionListener{
 	
 	private JFrame home;
 	private Empleado empleado;
+	private ImageIcon img;
 
 	public VentanaPersona(Home home){
 		super("Calcular ISR Individual");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.home = home;
+		
+		// Aniadir icono a la pagina
+		this.img = new ImageIcon("peso.png");
+		this.setIconImage(this.img.getImage());
 		
 		/*    Posiciones de tfInputs:
          * 0 - Nombre

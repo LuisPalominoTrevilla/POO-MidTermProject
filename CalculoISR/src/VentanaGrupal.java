@@ -1,5 +1,19 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -15,7 +29,7 @@ import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -32,6 +46,8 @@ public class VentanaGrupal extends JFrame{
 	private JFileChooser fc;
 	private Empresa miEmpresa;
 	
+	private ImageIcon img;
+	
 	public VentanaGrupal(Home home){
 		super("Calcular ISR varios trabajadores");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,6 +56,10 @@ public class VentanaGrupal extends JFrame{
 		this.fc = new JFileChooser(new File(System.getProperty("user.dir")));				// Parte del codigo para poner direccion tomada de http://stackoverflow.com/questions/21534515/jfilechooser-open-in-current-directory
 		this.fc.setFileFilter(new FileNameExtensionFilter("CSV File", "csv"));
         
+		// Aniadir icono a la pagina
+		this.img = new ImageIcon("peso.png");
+		this.setIconImage(this.img.getImage());
+		
 		this.panelOpciones = new JPanel();
 		this.panelSalir = new JPanel();
 		this.panelOpciones.setPreferredSize(new Dimension(400, 130));

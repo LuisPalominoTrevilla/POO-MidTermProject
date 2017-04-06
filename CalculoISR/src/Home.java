@@ -1,3 +1,18 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -7,6 +22,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +34,7 @@ public class Home extends JFrame{
 	private JRadioButton opcion1, opcion2;
 	private JButton continuar;
 	private JFrame ventanaGrupal, ventanaPersona;
+	private ImageIcon img;
 	
 	public Home(){
 		super("Bienvenido");
@@ -30,15 +47,19 @@ public class Home extends JFrame{
 		this.panel.setLayout(new BoxLayout(this.panel, BoxLayout.PAGE_AXIS));
 		this.add(this.panel);
 		this.pack();
+		
+		// Aniadir icono a la pagina
+		this.img = new ImageIcon("peso.png");
+		this.setIconImage(this.img.getImage());
 
         // Las siguientes 2 lineas de cdigo fueron tomadas de http://stackoverflow.com/questions/2442599/how-to-set-jframe-to-appear-centered-regardless-of-monitor-resolution
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         // Inicializar Componentes
-        this.opcion1 = new JRadioButton("Input manual", true);
+        this.opcion1 = new JRadioButton("Calcular ISR de manera individual", true);
         this.opcion1.setAlignmentX(Component.CENTER_ALIGNMENT);
-        this.opcion2 = new JRadioButton("Subir archivo con varios trabajadores");
+        this.opcion2 = new JRadioButton("Calcular ISR para varios trabajadores");
         this.opcion2.setAlignmentX(Component.CENTER_ALIGNMENT);
         this.opcion2.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
         ButtonGroup grupo1 = new ButtonGroup();

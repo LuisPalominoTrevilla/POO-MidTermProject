@@ -1,3 +1,18 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.lang.Math;
 
 public class Ingresos {
@@ -16,17 +31,16 @@ public class Ingresos {
 
 
 	 public double getSueldoAnual(){
-		 return this.sueldoMensual * 12;
+		 return this.sueldoMensual * 12.0;
 	 }
 
 	 public double getAguinaldoGravado(){
-		 double aguinaldoReturn = 0;
-		 
+
 		 if(this.aguinaldo > (this.sueldoMensual/30)*15){
-			 aguinaldoReturn = this.aguinaldo - (this.sueldoMensual/30)*15;	// Checa si aguinaldo excede limite de deduccion
+			 return this.aguinaldo - (this.sueldoMensual/30)*15;	// Checa si aguinaldo excede limite de deduccion
 		 }
 
-		 return aguinaldoReturn;
+		 return 0.0;
 	 }
 
 	 public double getAguinaldoExcento(){
@@ -34,11 +48,10 @@ public class Ingresos {
 	 }
 
 	 public double getPrimaVacacionalGravada(){
-		 double primaReturn = 0;
 		 if(this.primaVacacional > this.salarioMinimo*15){	// Checa si prima vacacional excede limite de deduccion
-			 primaReturn = Math.round((this.primaVacacional - this.salarioMinimo*15) * 1000.0)/1000.0;		// Redondear para evitar impresicion
+			 return Math.round((this.primaVacacional - this.salarioMinimo*15.0) * 1000.0)/1000.0;		// Redondear para evitar impresicion
 		 }
-		 return primaReturn;
+		 return 0.0;
 	 }
 
 	 public double getPrimaVacacionalExcenta(){

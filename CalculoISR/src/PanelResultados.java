@@ -1,3 +1,18 @@
+/*
+ * Autores: 
+ * Luis Palomino Trevilla A01228574
+ * Emanuel Estrada Larios A01633605 
+ * 
+ * Porcentaje de participación:
+ * Luis Palomino - 55%
+ * Emanuel Estrada - 45%
+ * 
+ * Fecha: 5 de abril de 2017
+ * 
+ * Comentarios: ninguno
+ * 
+ */
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -36,11 +51,12 @@ public class PanelResultados extends JPanel{
 		super();
 		this.setPreferredSize(new Dimension(700,600));
         this.setBorder(BorderFactory.createEmptyBorder(20,20,20,30));
-        this.setBackground(new Color(244, 239, 244));
+        this.setBackground(new Color(229, 220, 220));
         this.printString = "";
         // Aniadir titulo al panel resultados
-        JLabel titleResultados = new JLabel("--------------------------------------------------------    RESULTADOS    --------------------------------------------------------");
-        titleResultados.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+        JLabel titleResultados = new JLabel("-----------------------------------------    RESULTADOS    -----------------------------------------");
+        titleResultados.setFont(new Font("default", Font.BOLD, 17));
+        titleResultados.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
         this.add(titleResultados);
 
         /*    Posiciones de labelsImpuestos y textFieldsImpuestos:
@@ -89,22 +105,22 @@ public class PanelResultados extends JPanel{
 		// Inicializar paneles
         this.panelIngresos = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.panelIngresos.setPreferredSize(new Dimension(300, 325));
-		this.panelIngresos.setBackground(new Color(244, 239, 244));
+		this.panelIngresos.setBackground(new Color(229, 220, 220));
 		this.add(this.panelIngresos);
 		
 		this.panelDeducciones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         this.panelDeducciones.setPreferredSize(new Dimension(300, 325));
-        this.panelDeducciones.setBackground(new Color(244, 239, 244));
+        this.panelDeducciones.setBackground(new Color(229, 220, 220));
         this.add(this.panelDeducciones);
 		
 		this.panelImpuesto = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.panelImpuesto.setPreferredSize(new Dimension(300, 200));
-		this.panelImpuesto.setBackground(new Color(244, 239, 244));
+		this.panelImpuesto.setBackground(new Color(229, 220, 220));
 		this.add(this.panelImpuesto);
 		
 		this.panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		this.panelBotones.setPreferredSize(new Dimension(300, 200));
-		this.panelBotones.setBackground(new Color(244, 239, 244));
+		this.panelBotones.setBackground(new Color(229, 220, 220));
 		this.add(this.panelBotones);
 		
 		
@@ -145,17 +161,17 @@ public class PanelResultados extends JPanel{
         for(int i = 0; i < this.textFieldsIngresos.length; i++){
         	this.textFieldsIngresos[i] = new JTextField(10);
         	this.textFieldsIngresos[i].setEditable(false);
-        	this.textFieldsIngresos[i].setBackground(Color.WHITE);
+        	this.textFieldsIngresos[i].setBackground(new Color(249, 249, 249));
         }
         for(int i = 0; i < this.textFieldsDeducciones.length; i++){
         	this.textFieldsDeducciones[i] = new JTextField(10);
         	this.textFieldsDeducciones[i].setEditable(false);
-        	this.textFieldsDeducciones[i].setBackground(Color.WHITE);
+        	this.textFieldsDeducciones[i].setBackground(new Color(249, 249, 249));
         }
         for(int i = 0; i < this.textFieldsImpuestos.length; i++){
         	this.textFieldsImpuestos[i] = new JTextField(10);
         	this.textFieldsImpuestos[i].setEditable(false);
-        	this.textFieldsImpuestos[i].setBackground(Color.WHITE);
+        	this.textFieldsImpuestos[i].setBackground(new Color(249, 249, 249));
         }
         
         // Inicializar Botones
